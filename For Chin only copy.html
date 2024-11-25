@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Chin only</title>
+    <style>
+        p {
+            text-align: center;
+            font-size: 32px;
+            font-family: Candara, Oswald;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 25%;
+        }
+        .heart {
+            color: #e75480;
+            font-size: 50px;
+            position: absolute;
+            z-index: 1000;
+            animation: float 15s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-1000px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        #botao1, #botao2 {
+            display: block;
+        }
+        #botao1.hide, #botao2.hide {
+            display: none;
+        }
+        #botao1 {
+            position: fixed;
+            top: 70%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+        }
+        #botao2 {
+            position: absolute;
+            left: 39%;
+            top: 68%;
+        }
+    </style>
+</head>
+<body>
+    <p id="message">Magkita na tayo please!!!</p>
+    <img id="catImage" src="https://media.tenor.com/zGm5acSjHCIAAAAM/cat-begging.gif">
+    <button id="botao1">YES AEIN!</button>
+    <button id="botao2">NO</button>
+
+    <script>
+        const button1 = document.getElementById('botao1');
+        const button2 = document.getElementById('botao2');
+        let left = 40;
+
+        button2.addEventListener('mouseover', function() {
+            if (left == 40) {
+                left = 44;
+            } else {
+                left = 40;
+            }
+            this.style.left = left + '%';
+        });
+
+        button1.addEventListener('click', function() {
+            alert('YAYY THANK U, LOVE YOU AEIN 😍❤️');
+            createHearts();
+            changeContent();
+            changeImage();
+            hideButtons();
+        });
+
+        function createHearts() {
+            for (let i = 0; i < 50; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.top = Math.random() * 100 + 'vh'; // Random vertical position
+            document.body.appendChild(heart);
+
+            // Set a timeout to remove the heart element after animation finishes
+            setTimeout(function() {
+                heart.remove();
+            }, 5000);
+        }
+
+        function changeImage() {
+            document.getElementById('catImage').src = "https://media1.tenor.com/m/UTrLSr85tYEAAAAC/happy-cat-cat.gif";
+        }
+
+        function changeContent() {
+            document.getElementById('message').textContent = "Yippee!!";
+        }
+
+        function hideButtons() {
+            button1.classList.add('hide');
+            button2.classList.add('hide');
+        }
+    </script>
+</body>
+</html>
